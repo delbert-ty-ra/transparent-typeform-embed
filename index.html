@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typeform Embed</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+    #typeform {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="typeform"></div>
+  <script src="https://embed.typeform.com/next/embed.js"></script>
+  <script>
+    window.typeformEmbed.makeWidget(
+      document.getElementById('typeform'),
+      'https://form.typeform.com/to/BbyTKkQ6',
+      {
+        hideHeaders: true,
+        hideFooter: true,
+        opacity: 0,
+        transparency: 100,
+        autoResize: false
+      }
+    );
+  </script>
+</body>
+</html>
