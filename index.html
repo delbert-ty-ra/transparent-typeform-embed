@@ -14,34 +14,49 @@
     }
     #typeform {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       border: none;
     }
   </style>
 </head>
 <body>
-  <div id="typeform">Loading form...</div>
+  <div id="typeform"></div>
+  
+  <!-- Method 1: Using the current CDN approach -->
+  <script src="//embed.typeform.com/next/embed.js"></script>
   <script>
-    const script = document.createElement("script");
-    script.src = "https://embed.typeform.com/next/embed.js";
-    script.onload = () => {
-      if (window.typeformEmbed) {
-        window.typeformEmbed.makeWidget(
-          document.getElementById("typeform"),
-          "https://form.typeform.com/to/BbyTKkQ6",
-          {
-            hideHeaders: true,
-            hideFooter: true,
-            opacity: 0,
-            transparency: 100,
-            autoResize: false
-          }
-        );
-      } else {
-        console.error("SDK loaded but typeformEmbed not found");
+    // Using the current Typeform embed API
+    window.addEventListener('DOMContentLoaded', function() {
+      // Method 1a: Direct widget creation (newer approach)
+      if (window.tf && window.tf.createWidget) {
+        window.tf.createWidget('BbyTKkQ6', {
+          container: document.getElementById('typeform'),
+          hideHeaders: true,
+          hideFooter: true,
+          height: '100%'
+        });
+      } 
+      // Method 1b: Alternative approach using data attributes
+      else {
+        document.getElementById('typeform').setAttribute('data-tf-widget', 'BbyTKkQ6');
+        document.getElementById('typeform').setAttribute('data-tf-hide-headers', 'true');
+        document.getElementById('typeform').setAttribute('data-tf-hide-footer', 'true');
+        
+        // Trigger the embed
+        if (window.tf && window.tf.load) {
+          window.tf.load();
+        }
       }
-    };
-    document.head.appendChild(script);
+    });
   </script>
+  
+  <!-- Method 2: Fallback using HTML data attributes (simplest approach) -->
+  <!-- 
+  <div data-tf-widget="BbyTKkQ6" 
+       data-tf-hide-headers="true" 
+       data-tf-hide-footer="true" 
+       style="width:100%;height:100vh;"></div>
+  <script src="//embed.typeform.com/next/embed.js"></script>
+  -->
 </body>
 </html>
