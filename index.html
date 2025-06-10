@@ -20,20 +20,26 @@
   </style>
 </head>
 <body>
-  <div id="typeform"></div>
+  <div id="typeform">Loading form...</div>
   <script src="https://embed.typeform.com/next/embed.js"></script>
   <script>
-    window.typeformEmbed.makeWidget(
-      document.getElementById('typeform'),
-      'https://form.typeform.com/to/BbyTKkQ6',
-      {
-        hideHeaders: true,
-        hideFooter: true,
-        opacity: 0,
-        transparency: 100,
-        autoResize: false
+    window.addEventListener("load", function () {
+      if (window.typeformEmbed) {
+        window.typeformEmbed.makeWidget(
+          document.getElementById("typeform"),
+          "https://form.typeform.com/to/BbyTKkQ6",
+          {
+            hideHeaders: true,
+            hideFooter: true,
+            opacity: 0,
+            transparency: 100,
+            autoResize: false,
+          }
+        );
+      } else {
+        console.error("Typeform SDK not loaded.");
       }
-    );
+    });
   </script>
 </body>
 </html>
