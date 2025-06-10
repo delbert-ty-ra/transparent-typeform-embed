@@ -23,8 +23,8 @@
   <div id="typeform">Loading form...</div>
   <script src="https://embed.typeform.com/next/embed.js"></script>
   <script>
-    window.addEventListener("load", function () {
-      if (window.typeformEmbed) {
+    function tryEmbedForm() {
+      if (window.typeformEmbed && window.typeformEmbed.makeWidget) {
         window.typeformEmbed.makeWidget(
           document.getElementById("typeform"),
           "https://form.typeform.com/to/BbyTKkQ6",
@@ -33,13 +33,15 @@
             hideFooter: true,
             opacity: 0,
             transparency: 100,
-            autoResize: false,
+            autoResize: false
           }
         );
       } else {
-        console.error("Typeform SDK not loaded.");
+        setTimeout(tryEmbedForm, 100); // Keep trying until ready
       }
-    });
+    }
+
+    tryEmbedForm();
   </script>
 </body>
 </html>
