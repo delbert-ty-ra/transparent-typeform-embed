@@ -21,10 +21,11 @@
 </head>
 <body>
   <div id="typeform">Loading form...</div>
-  <script src="https://embed.typeform.com/next/embed.js"></script>
   <script>
-    function tryEmbedForm() {
-      if (window.typeformEmbed && window.typeformEmbed.makeWidget) {
+    const script = document.createElement("script");
+    script.src = "https://embed.typeform.com/next/embed.js";
+    script.onload = () => {
+      if (window.typeformEmbed) {
         window.typeformEmbed.makeWidget(
           document.getElementById("typeform"),
           "https://form.typeform.com/to/BbyTKkQ6",
@@ -37,11 +38,10 @@
           }
         );
       } else {
-        setTimeout(tryEmbedForm, 100); // Keep trying until ready
+        console.error("SDK loaded but typeformEmbed not found");
       }
-    }
-
-    tryEmbedForm();
+    };
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
